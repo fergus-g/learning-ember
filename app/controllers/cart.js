@@ -6,15 +6,15 @@ export default class CartController extends Controller {
   @service('shopping-cart') cart;
 
   get subtotal() {
-    return (this.cart.itemList ?? []).reduce(
-      (acc, item) => acc + (Number(item.price) * item.count || 0),
-      0,
-    );
+    return this.cart.itemList.reduce((acc, item) => {
+      return acc + item.price * item.count;
+    }, 0);
   }
 
   get tax() {
     return 0.09 * this.subtotal;
   }
+
   get total() {
     return this.subtotal + this.tax;
   }

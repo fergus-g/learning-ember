@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class ItemController extends Controller {
-  @tracked color = this.model.colors[0].color;
+  @tracked color;
 
   @tracked isZoomed = false;
 
@@ -12,12 +12,12 @@ export default class ItemController extends Controller {
   }
 
   @action
-  toggleZoom() {
-    this.isZoomed = !this.isZoomed;
+  onChangeColor(newColor) {
+    this.color = newColor;
   }
 
   @action
-  onChangeColor(newColor) {
-    this.color = newColor;
+  toggleZoom() {
+    this.isZoomed = !this.isZoomed;
   }
 }
